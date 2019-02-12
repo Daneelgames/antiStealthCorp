@@ -5,7 +5,7 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     public List<DoorController> doors;
-    public GoalController goalController;
+    public bool goalController;
 
     private void Start()
     {

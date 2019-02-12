@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
 
     public List<SpyAi> spies = new List<SpyAi>();
     List<Vector3> spiesPositions = new List<Vector3>();
+    List<Quaternion> spiesRotations = new List<Quaternion>();
+
+    public List<GuardAi> guards = new List<GuardAi>();
+    List<Vector3> guardsPositions = new List<Vector3>();
+    List<Quaternion> guardsRotations = new List<Quaternion>();
 
     private void Awake()
     {
@@ -27,6 +32,14 @@ public class GameManager : MonoBehaviour
     {
         spies.Add(spy);
         spiesPositions.Add(spy.transform.position);
+        spiesRotations.Add(spy.transform.rotation);
+    }
+
+    public void AddGuard(GuardAi guard)
+    {
+        guards.Add(guard);
+        guardsPositions.Add(guard.transform.position);
+        guardsRotations.Add(guard.transform.rotation);
     }
 
     public void AddRoom(RoomController room)
@@ -46,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
+
         foreach(RoomController room in rooms)
         {
             foreach(DoorController door in room.doors)
@@ -56,7 +70,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < spies.Count; i ++)
         {
-            spies[i].ResetSpy(spiesPositions[i]);
+            spies[i].ResetSpy(spiesPositions[i], spiesRotations[i]);
+        }
+
+        for (int i = 0; i < guards.Count; i++)
+        {
+            guards[i].ResetGuard(guardsPositions[i], guardsRotations[i]);
         }
     }
 }

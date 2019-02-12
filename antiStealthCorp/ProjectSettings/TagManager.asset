@@ -7,6 +7,7 @@ TagManager:
   - Room
   - Door
   - Goal
+  - Spy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Room
   - Door
   - Goal
-  - 
+  - Spy
   - 
   - 
   - 

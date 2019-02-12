@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SpyAi : MonoBehaviour
 {
+    public float reactionTime = 1;
     public float lockpickTime = 5;
 
     public NavMeshAgent navMeshAgent;
@@ -40,12 +41,16 @@ public class SpyAi : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9 && other.gameObject.tag == "Room")
+        if (other.gameObject.layer == 11 && other.gameObject.tag == "Goal")
+        {
+            gm.RestartLevel();
+        }
+        else if(other.gameObject.layer == 9 && other.gameObject.tag == "Room")
         {
             currentRoom = gm.GetCurrentRoom(other.gameObject.name);
 
-            if (!currentRoom.goalController)
-                MoveToDoor();
+           // if (!currentRoom.goalController)
+                Invoke("MoveToDoor", reactionTime);
         }
         else if (other.gameObject.layer == 10 && other.gameObject.tag == "Door")
         {
@@ -54,8 +59,6 @@ public class SpyAi : MonoBehaviour
                 targetDoor.SpyInteract(this);
             }
         }
-        else if (other.gameObject.layer == 11 && other.gameObject.tag == "Goal")
-            gm.RestartLevel();
     }
 
     public void MoveToDoor()
@@ -89,10 +92,11 @@ public class SpyAi : MonoBehaviour
         return closestDoor.transform.position;
     }
 
-    public void ResetSpy(Vector3 newPos)
+    public void ResetSpy(Vector3 newPos, Quaternion newRotation)
     {
         navMeshAgent.enabled = false;
         transform.position = newPos;
+        transform.rotation = newRotation;
         navMeshAgent.enabled = true;
         currentRoom = initialRoom;
         MoveToDoor();

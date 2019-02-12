@@ -61,8 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\GoalController.cs" />
+    <Compile Include="Assets\Scripts\BulletController.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
+    <Compile Include="Assets\Scripts\GuardAi.cs" />
+    <Compile Include="Assets\Scripts\GuardFeedbackIconController.cs" />
+    <Compile Include="Assets\Scripts\GuardSight.cs" />
+    <Compile Include="Assets\Scripts\GuardWeaponController.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
     <Compile Include="Assets\Scripts\SpyAi.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
