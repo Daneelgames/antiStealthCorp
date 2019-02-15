@@ -40,8 +40,16 @@ public class DoorController : MonoBehaviour
     
     void Open(SpyAi spy)
     {
-        anim.SetTrigger("Open");
-        MoveToRoom(spy);
+        anim.SetBool("Open", true);
+
+        foreach (RoomController room in rooms) //get new room
+        {
+            if (room != spy.currentRoom)
+            {
+                StartCoroutine(spy.ScanRoom(room));
+                break;
+            }
+        }
     }
 
     public void SpyInteract(SpyAi spy)
@@ -54,15 +62,11 @@ public class DoorController : MonoBehaviour
             Open(spy);
     }
 
-    void MoveToRoom(SpyAi spy)
+    private void OnTriggerExit(Collider other)
     {
-        foreach (RoomController room in rooms)
+        if (other.gameObject.layer == 12 || other.gameObject.layer == 13)
         {
-            if (room != spy.currentRoom)
-            {
-                spy.MoveToRoom(room);
-                break;
-            }
+            anim.SetBool("Open", false);
         }
     }
 }

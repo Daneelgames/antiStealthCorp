@@ -7,12 +7,8 @@ public class GuardSight : MonoBehaviour
     public GuardAi guardAi;
 
     public float fovAngle = 90;
-    public Vector3 personalLastSighting;
 
     public List<SpyAi> spiesInSight = new List<SpyAi>();
-
-    [SerializeField]
-    Collider col;
 
     [SerializeField]
     LayerMask layerMask;
@@ -23,7 +19,6 @@ public class GuardSight : MonoBehaviour
 
     private void Start()
     {
-        raycastOrigin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
         gm = GameManager.instance;
     }
 
@@ -43,8 +38,9 @@ public class GuardSight : MonoBehaviour
             if (angle < fovAngle * 0.5f)
             {
                 RaycastHit hit;
+                raycastOrigin = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
 
-                Debug.DrawRay(raycastOrigin, direction, Color.red);
+                //Debug.DrawRay(raycastOrigin, direction, Color.red);
 
                 if (Physics.Raycast(raycastOrigin, direction.normalized, out hit, 10, layerMask))
                 {

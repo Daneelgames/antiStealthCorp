@@ -61,14 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\GameManager.cs" />
-    <Compile Include="Assets\Scripts\BulletController.cs" />
+    <Compile Include="Assets\HealthController.cs" />
     <Compile Include="Assets\Scripts\DoorController.cs" />
     <Compile Include="Assets\Scripts\GuardAi.cs" />
     <Compile Include="Assets\Scripts\GuardFeedbackIconController.cs" />
     <Compile Include="Assets\Scripts\GuardSight.cs" />
-    <Compile Include="Assets\Scripts\GuardWeaponController.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
     <Compile Include="Assets\Scripts\SpyAi.cs" />
+    <Compile Include="Assets\Scripts\WeaponController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/@daneelgames/antiStealthCorp/antiStealthCorp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

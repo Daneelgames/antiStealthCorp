@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    List<RoomController> rooms = new List<RoomController>();
+    public List<RoomController> rooms = new List<RoomController>();
 
     public List<SpyAi> spies = new List<SpyAi>();
     List<Vector3> spiesPositions = new List<Vector3>();
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public List<GuardAi> guards = new List<GuardAi>();
     List<Vector3> guardsPositions = new List<Vector3>();
     List<Quaternion> guardsRotations = new List<Quaternion>();
+
+    public List<HealthController> healthControllers = new List<HealthController>();
 
     private void Awake()
     {
@@ -28,18 +30,20 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void AddSpy(SpyAi spy)
+    public void AddSpy(SpyAi spy, HealthController health)
     {
         spies.Add(spy);
         spiesPositions.Add(spy.transform.position);
         spiesRotations.Add(spy.transform.rotation);
+        healthControllers.Add(health);
     }
 
-    public void AddGuard(GuardAi guard)
+    public void AddGuard(GuardAi guard, HealthController health)
     {
         guards.Add(guard);
         guardsPositions.Add(guard.transform.position);
         guardsRotations.Add(guard.transform.rotation);
+        healthControllers.Add(health);
     }
 
     public void AddRoom(RoomController room)
